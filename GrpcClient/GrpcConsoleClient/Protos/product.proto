@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package product;
+
+service Product {
+  rpc GetAll (GetAllRequest) returns (stream GetAllResponse);
+}
+
+message GetAllRequest {
+  string userId = 1;
+}
+
+message ProductOverview {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+}
+
+message GetAllResponse {
+	bool hasError = 1;
+	string errorMessage = 2;
+	repeated ProductOverview Products = 3;
+}
